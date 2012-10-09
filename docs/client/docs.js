@@ -191,19 +191,15 @@ var toc = [
       "Accounts.changePassword",
       "Accounts.forgotPassword",
       "Accounts.resetPassword",
-      "Accounts.validateEmail",
+      "Accounts.setPassword",
+      "Accounts.confirmEmail",
       {type: "spacer"},
 
       "Accounts.config",
+      "Accounts.ui.config",
       "Accounts.emailTemplates",
       "Accounts.validateNewUser",
-      "Accounts.onCreateUser",
-      "Accounts.setPassword",
-      "Accounts.configuration",
-      {type: "spacer"},
-
-      "Accounts.facebook.config",
-      "Accounts.google.config"
+      "Accounts.onCreateUser"
     ],
 
 
