@@ -458,14 +458,14 @@ Template.api.allow = {
   id: "allow",
   name: "<em>collection</em>.allow(options)",
   locus: "Server",
-  descr: ["Specify access control functions to allow clients to write to this collection using the default Mongo mutator methods."],
+  descr: ["Allow users to write directly to this collection from client code, subject to limitations you define."],
   options: [
     {name: "insert, update, remove",
      type: "Function",
-     descr: "Access control functions that are called for each client-initiated database write. Return true to allow the write. See below for details on the arguments to access control functions. You can specify any combination of the three functions."},
+     descr: "Functions that look at a proposed modification to the database and return true if it should be allowed."},
     {name: "fetch",
-     type: "Array of Strings",
-     descr: "Specific fields to retrieve when reading documents from the database to pass to `update` and `remove` access control functions. If this is not specified, all fields are retrieved. Specifying which fields to fetch can be a performance improvement."}
+     type: "Array of String",
+     descr: "Optional performance enhancement. Limits the fields that will be fetched from the database for inspection by your `update` and `remove` functions."}
   ]
 };
 
@@ -473,14 +473,14 @@ Template.api.deny = {
   id: "deny",
   name: "<em>collection</em>.deny(options)",
   locus: "Server",
-  descr: ["Specify access control functions to forbid clients from writing to this collection using the default Mongo mutator methods."],
+  descr: ["Override `allow` rules."],
   options: [
     {name: "insert, update, remove",
      type: "Function",
-     descr: "Access control functions that are called for each client-initiated database write. Return true to deny the write. See <a href='#allow'>`allow`</a> for details."},
+     descr: "Functions that look at a proposed modification to the database and return true if it should be denied, even if an `allow` rule says otherwise."},
     {name: "fetch",
      type: "Array of Strings",
-     descr: "Specific fields to retrieve when reading documents from the database to pass to `update` and `remove` access control functions. If this is not specified, all fields are retrieved. Specifying which fields to fetch can be a performance improvement."}
+     descr: "Optional performance enhancement. Limits the fields that will be fetched from the database for inspection by your `update` and `remove` functions."}
   ]
 };
 
