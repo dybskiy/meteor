@@ -122,6 +122,9 @@ is the place to stop the observes.
 
 {{> api_box subscription_userId}}
 
+This is constant. However, if the logged-in user changes, the publish
+function is rerun with the new value.
+
 {{> api_box subscribe}}
 
 When you subscribe to a record set, it tells the server to send records
@@ -222,19 +225,25 @@ exception it will be logged to the console.
 
 {{> api_box method_invocation_userId}}
 
-The user for a method is determined when the method starts running and
-will not change during method execution, even if `unblock` is called.
+The user id is an arbitrary string &mdash; typically the id of the user
+record in the database. You can set it with the `setUserId` function. If
+you're using the Meteor accounts system then this is handled for you.
 
 {{> api_box method_invocation_setUserId}}
 
-Calling this function from a method will result in all future methods
-received on the same connection having their `userId` set to the
-provided value. Future calls to `this.userId` in the same method will
-also return the new value.
+Call this function to change the currently logged in user on the
+connection that made this method call. This simply sets the value of
+`userId` for future method calls received on this connection. Pass
+`null` to log out the connection.
 
-Values should correspond to the `_id` field of a document in the
+If you are using the built-in Meteor accounts system then this should correspond to
+the `_id` field of a document in the
 <a href="#meteor_users">`Meteor.users`</a> collection.
 
+`setUserId` is not retroactive. It affects the current method call and
+any future method calls on the connection. Any previous method calls on
+this connection will still see the value of `userId` that was in effect
+when they started.
 
 {{> api_box method_invocation_isSimulation}}
 

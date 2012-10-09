@@ -147,9 +147,9 @@ Template.api.subscription_onStop = {
 
 Template.api.subscription_userId = {
   id: "publish_userId",
-  name: "<i>this</i>.userId()",
+  name: "<i>this</i>.userId",
   locus: "Server",
-  descr: ["Returns the id of current user, or `null` if no user logged in. The publish function is rerun when this changes."]
+  descr: ["The id of logged-in user, or `null` if no user is logged in."]
 };
 
 
@@ -197,20 +197,20 @@ Template.api.methods = {
 
 Template.api.method_invocation_userId = {
   id: "method_userId",
-  name: "<i>this</i>.userId()",
+  name: "<i>this</i>.userId",
   locus: "Anywhere",
-  descr: ["Returns the id of the current user, or `null` if no user is logged in."]
+  descr: ["The id of the user that made this method call, or `null` if no user was logged in."]
 };
 
 Template.api.method_invocation_setUserId = {
   id: "method_setUserId",
   name: "<i>this</i>.setUserId(userId)",
   locus: "Server",
-  descr: ["Set a user id for this session."],
+  descr: ["Set the logged in user."],
   args: [
     {name: "userId",
-     type: "String",
-     descr: "The id of the user for this connection, or `null` to log the user out."}
+     type: "String or null",
+     descr: "The value that should be returned by `userId` on this connection."}
   ]
 };
 
