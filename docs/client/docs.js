@@ -177,6 +177,7 @@ var toc = [
       "Meteor.user",
       "Meteor.userId",
       "Meteor.users",
+      "Meteor.userLoaded",
       "Meteor.logout",
       "Meteor.loginWithPassword",
       "Meteor.loginWithFacebook",

@@ -671,15 +671,23 @@ Template.api.isolate = {
 Template.api.user = {
   id: "meteor_user",
   name: "Meteor.user()",
-  locus: "XXX client+methods",
-  descr: ["Returns the current user object, of null if not logged in. A reactive data source."]
+  locus: "Anywhere but subscriptions",
+  descr: ["Returns the current user object, or null if not logged in. A reactive data source."]
 };
+
+Template.api.userLoaded = {
+  id: "meteor_userloaded",
+  name: "Meteor.userLoaded()",
+  locus: "Client",
+  descr: ["XXX"]
+};
+
 
 Template.api.userId = {
   id: "meteor_userid",
   name: "Meteor.userId()",
-  locus: "XXX client+methods",
-  descr: ["Returns the current user id, of null if not logged in. A reactive data source."]
+  locus: "Anywhere but subscriptions",
+  descr: ["Returns the current user id, or null if not logged in. A reactive data source."]
 };
 
 
