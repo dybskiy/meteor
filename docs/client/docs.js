@@ -192,12 +192,17 @@ var toc = [
       "Accounts.forgotPassword",
       "Accounts.resetPassword",
       "Accounts.setPassword",
-      "Accounts.confirmEmail",
+      "Accounts.verifyEmail",
+      {type: "spacer"},
+
+      "Accounts.sendResetPasswordEmail",
+      "Accounts.sendVerificationEmail",
+      "Accounts.sendEnrollmentEmail",
+      "Accounts.emailTemplates",
       {type: "spacer"},
 
       "Accounts.config",
       "Accounts.ui.config",
-      "Accounts.emailTemplates",
       "Accounts.validateNewUser",
       "Accounts.onCreateUser"
     ],

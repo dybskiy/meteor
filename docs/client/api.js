@@ -753,7 +753,7 @@ Template.api.loginWithFacebook = {
   ],
   options: [
     {
-      name: "scope",
+      name: "requestPermissions",
       type: "Array of Strings",
       descr: "XXX"
     }
@@ -774,7 +774,7 @@ Template.api.loginWithGithub = {
   ],
   options: [
     {
-      name: "scope",
+      name: "requestPermissions",
       type: "Array of Strings",
       descr: "XXX"
     }
@@ -795,7 +795,7 @@ Template.api.loginWithGoogle = {
   ],
   options: [
     {
-      name: "scope",
+      name: "requestPermissions",
       type: "Array of Strings",
       descr: "XXX"
     }
@@ -967,11 +967,11 @@ Template.api.accounts_setPassword = {
   ]
 };
 
-Template.api.accounts_confirmEmail = {
-  id: "accounts_confirmemail",
-  name: "Accounts.confirmEmail(token, [callback])",
+Template.api.accounts_verifyEmail = {
+  id: "accounts_verifyemail",
+  name: "Accounts.verifyEmail(token, [callback])",
   locus: "Client",
-  descr: ["Marks the user's email address as confirmed. Logs the user in afterwards."],
+  descr: ["Marks the user's email address as verified. Logs the user in afterwards."],
   args: [
     {
       name: "token",
@@ -987,6 +987,71 @@ Template.api.accounts_confirmEmail = {
 };
 
 
+Template.api.accounts_sendResetPasswordEmail = {
+  id: "accounts_sendresetpasswordemail",
+  name: "Accounts.sendResetPasswordEmail(userId, [email])",
+  locus: "Server",
+  descr: ["Send an email with a link the user can use to reset their password."],
+  args: [
+    {
+      name: "userId",
+      type: "String",
+      descr: "XXX"
+    },
+    {
+      name: "email",
+      type: "String",
+      descr: "Optional. If passed, must be one of the email addresses in user.emails."
+    }
+  ]
+};
+
+Template.api.accounts_sendVerificationEmail = {
+  id: "accounts_sendverificationemail",
+  name: "Accounts.sendVerificationEmail(userId, [email])",
+  locus: "Server",
+  descr: ["Send an email with a link the user can use verify their email address."],
+  args: [
+    {
+      name: "userId",
+      type: "String",
+      descr: "XXX"
+    },
+    {
+      name: "email",
+      type: "String",
+      descr: "Optional. If passed, must be one of the email addresses in user.emails."
+    }
+  ]
+};
+
+
+Template.api.accounts_sendEnrollmentEmail = {
+  id: "accounts_sendenrollmentemail",
+  name: "Accounts.sendEnrollmentEmail(userId, [email])",
+  locus: "Server",
+  descr: ["Send an email with a link the user can use to set their initial password."],
+  args: [
+    {
+      name: "userId",
+      type: "String",
+      descr: "XXX"
+    },
+    {
+      name: "email",
+      type: "String",
+      descr: "Optional. If passed, must be one of the email addresses in user.emails."
+    }
+  ]
+};
+
+Template.api.accounts_emailTemplates = {
+  id: "accounts_emailtemplates",
+  name: "Accounts.emailTemplates",
+  locus: "Anywhere",
+  descr: ["XXX"]
+};
+
 
 
 Template.api.accounts_config = {
@@ -996,12 +1061,12 @@ Template.api.accounts_config = {
   descr: ["Set global accounts options."],
   options: [
     {
-      name: "sendConfirmationEmail",
+      name: "sendVerificationEmail",
       type: "Boolean",
-      descr: "If true, new users with an email address will receive an address confirmation email."
+      descr: "If true, new users with an email address will receive an address verification email."
     },
     {
-      name: "forbidSignups",
+      name: "forbidClientAccountCreation",
       type: "Boolean",
       descr: "If true, new user signups will be rejected. Server-side user creation via XXXlinkify createUser is still allowed."
     }
@@ -1015,20 +1080,17 @@ Template.api.accounts_ui_config = {
   descr: ["Set LoginButtons UI options."],
   options: [
     {
-      name: "XXX",
-      type: "Boolean",
-      descr: "XXX"
+      name: "requestPermissions",
+      type: "Object",
+      descr: "what to pass to requestPermissions for each service. eg `{facebook: ['user_activity']}`"
+    },
+    {
+      name: "passwordSignupFields",
+      type: "String",
+      descr: "'`USERNAME_AND_EMAIL`', '`USERNAME_AND_OPTIONAL_EMAIL`', '`USERNAME_ONLY`', or '`EMAIL_ONLY`' (default)"
     }
   ]
 };
-
-Template.api.accounts_emailTemplates = {
-  id: "accounts_emailtemplates",
-  name: "Accounts.emailTemplates",
-  locus: "Anywhere",
-  descr: ["XXX"]
-};
-
 
 Template.api.accounts_validateNewUser = {
   id: "accounts_validatenewuser",
